@@ -2479,9 +2479,8 @@ public class DDLSemanticAnalyzer extends BaseSemanticAnalyzer {
   private void analyzeLockDatabase(ASTNode ast) throws SemanticException {
     String dbName = unescapeIdentifier(ast.getChild(0).getText());
     String mode  = unescapeIdentifier(ast.getChild(1).getText().toUpperCase());
-
-    //inputs.add(new ReadEntity(dbName));
-    //outputs.add(new WriteEntity(dbName));
+    inputs.add(new ReadEntity(getDatabase(dbName)));
+    outputs.add(new WriteEntity(getDatabase(dbName), WriteEntity.WriteType.DDL_SHARED));
     LockDatabaseDesc lockDatabaseDesc = new LockDatabaseDesc(dbName, mode,
                         HiveConf.getVar(conf, ConfVars.HIVEQUERYID));
     lockDatabaseDesc.setQueryStr(ctx.getCmd());
@@ -2492,7 +2491,8 @@ public class DDLSemanticAnalyzer extends BaseSemanticAnalyzer {
 
   private void analyzeUnlockDatabase(ASTNode ast) throws SemanticException {
     String dbName = unescapeIdentifier(ast.getChild(0).getText());
-
+    inputs.add(new ReadEntity(getDatabase(dbName)));
+    outputs.add(new WriteEntity(getDatabase(dbName), WriteEntity.WriteType.DDL_SHARED));
     UnlockDatabaseDesc unlockDatabaseDesc = new UnlockDatabaseDesc(dbName);
     DDLWork work = new DDLWork(getInputs(), getOutputs(), unlockDatabaseDesc);
     rootTasks.add(TaskFactory.get(work, conf));
