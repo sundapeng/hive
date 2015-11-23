@@ -2419,7 +2419,7 @@ public class DDLSemanticAnalyzer extends BaseSemanticAnalyzer {
     // Lock table operation is to acquire the lock explicitly, the operation
     // itself doesn't need to be locked. Set the WriteEntity as WriteType:
     // DDL_NO_LOCK here, otherwise it will conflict with Hive's transaction.
-    outputs.add(new WriteEntity(getTable(tableName), WriteType.DDL_NO_LOCK));
+    outputs.add(new WriteEntity(getTable(tableName), WriteEntity.WriteType.DDL_NO_LOCK));
 
     LockTableDesc lockTblDesc = new LockTableDesc(tableName, mode, partSpec,
         HiveConf.getVar(conf, ConfVars.HIVEQUERYID));
@@ -2479,7 +2479,7 @@ public class DDLSemanticAnalyzer extends BaseSemanticAnalyzer {
     // operation itself don't need to be locked. Set the WriteEntity as
     // WriteType: DDL_NO_LOCK here, otherwise it will conflict with
     // Hive's transaction.
-    outputs.add(new WriteEntity(getTable(tableName), WriteType.DDL_NO_LOCK));
+    outputs.add(new WriteEntity(getTable(tableName), WriteEntity.WriteType.DDL_NO_LOCK));
 
     UnlockTableDesc unlockTblDesc = new UnlockTableDesc(tableName, partSpec);
     rootTasks.add(TaskFactory.get(new DDLWork(getInputs(), getOutputs(),
@@ -2497,7 +2497,7 @@ public class DDLSemanticAnalyzer extends BaseSemanticAnalyzer {
     // Lock database operation is to acquire the lock explicitly, the operation
     // itself doesn't need to be locked. Set the WriteEntity as WriteType:
     // DDL_NO_LOCK here, otherwise it will conflict with Hive's transaction.
-    outputs.add(new WriteEntity(getDatabase(dbName), WriteType.DDL_NO_LOCK));
+    outputs.add(new WriteEntity(getDatabase(dbName), WriteEntity.WriteType.DDL_NO_LOCK));
 
     LockDatabaseDesc lockDatabaseDesc = new LockDatabaseDesc(dbName, mode,
                         HiveConf.getVar(conf, ConfVars.HIVEQUERYID));
@@ -2515,7 +2515,7 @@ public class DDLSemanticAnalyzer extends BaseSemanticAnalyzer {
     // operation itself don't need to be locked. Set the WriteEntity as
     // WriteType: DDL_NO_LOCK here, otherwise it will conflict with
     // Hive's transaction.
-    outputs.add(new WriteEntity(getDatabase(dbName), WriteType.DDL_NO_LOCK));
+    outputs.add(new WriteEntity(getDatabase(dbName), WriteEntity.WriteType.DDL_NO_LOCK));
 
     UnlockDatabaseDesc unlockDatabaseDesc = new UnlockDatabaseDesc(dbName);
     DDLWork work = new DDLWork(getInputs(), getOutputs(), unlockDatabaseDesc);
