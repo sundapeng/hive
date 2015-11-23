@@ -12,7 +12,11 @@ POSTHOOK: Output: database:default
 POSTHOOK: Output: default@insert_into1_neg
 PREHOOK: query: LOCK TABLE insert_into1_neg EXCLUSIVE
 PREHOOK: type: LOCKTABLE
+PREHOOK: Input: default@insert_into1_neg
+PREHOOK: Output: default@insert_into1_neg
 POSTHOOK: query: LOCK TABLE insert_into1_neg EXCLUSIVE
 POSTHOOK: type: LOCKTABLE
+POSTHOOK: Input: default@insert_into1_neg
+POSTHOOK: Output: default@insert_into1_neg
 Unable to acquire IMPLICIT, EXCLUSIVE lock default@insert_into1_neg after 5 attempts.
 FAILED: Error in acquiring locks: Locks on the underlying objects cannot be acquired. retry after some time

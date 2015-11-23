@@ -48,16 +48,28 @@ POSTHOOK: Lineage: tstsrcpart PARTITION(ds=2008-04-08,hr=11).key SIMPLE [(srcpar
 POSTHOOK: Lineage: tstsrcpart PARTITION(ds=2008-04-08,hr=11).value SIMPLE [(srcpart)srcpart.FieldSchema(name:value, type:string, comment:default), ]
 PREHOOK: query: LOCK TABLE tstsrc SHARED
 PREHOOK: type: LOCKTABLE
+PREHOOK: Input: default@tstsrc
+PREHOOK: Output: default@tstsrc
 POSTHOOK: query: LOCK TABLE tstsrc SHARED
 POSTHOOK: type: LOCKTABLE
+POSTHOOK: Input: default@tstsrc
+POSTHOOK: Output: default@tstsrc
 PREHOOK: query: LOCK TABLE tstsrcpart SHARED
 PREHOOK: type: LOCKTABLE
+PREHOOK: Input: default@tstsrcpart
+PREHOOK: Output: default@tstsrcpart
 POSTHOOK: query: LOCK TABLE tstsrcpart SHARED
 POSTHOOK: type: LOCKTABLE
+POSTHOOK: Input: default@tstsrcpart
+POSTHOOK: Output: default@tstsrcpart
 PREHOOK: query: LOCK TABLE tstsrcpart PARTITION(ds='2008-04-08', hr='11') EXCLUSIVE
 PREHOOK: type: LOCKTABLE
+PREHOOK: Input: default@tstsrcpart
+PREHOOK: Output: default@tstsrcpart
 POSTHOOK: query: LOCK TABLE tstsrcpart PARTITION(ds='2008-04-08', hr='11') EXCLUSIVE
 POSTHOOK: type: LOCKTABLE
+POSTHOOK: Input: default@tstsrcpart
+POSTHOOK: Output: default@tstsrcpart
 PREHOOK: query: SHOW LOCKS
 PREHOOK: type: SHOWLOCKS
 POSTHOOK: query: SHOW LOCKS
@@ -85,8 +97,12 @@ LOCK_MODE:EXPLICIT
 LOCK_QUERYSTRING:LOCK TABLE tstsrcpart PARTITION(ds='2008-04-08', hr='11') EXCLUSIVE	 
 PREHOOK: query: UNLOCK TABLE tstsrc
 PREHOOK: type: UNLOCKTABLE
+PREHOOK: Input: default@tstsrc
+PREHOOK: Output: default@tstsrc
 POSTHOOK: query: UNLOCK TABLE tstsrc
 POSTHOOK: type: UNLOCKTABLE
+POSTHOOK: Input: default@tstsrc
+POSTHOOK: Output: default@tstsrc
 PREHOOK: query: SHOW LOCKS
 PREHOOK: type: SHOWLOCKS
 POSTHOOK: query: SHOW LOCKS
@@ -105,8 +121,12 @@ POSTHOOK: type: SHOWLOCKS
 default@tstsrcpart@ds=2008-04-08/hr=11	EXCLUSIVE
 PREHOOK: query: UNLOCK TABLE tstsrcpart
 PREHOOK: type: UNLOCKTABLE
+PREHOOK: Input: default@tstsrcpart
+PREHOOK: Output: default@tstsrcpart
 POSTHOOK: query: UNLOCK TABLE tstsrcpart
 POSTHOOK: type: UNLOCKTABLE
+POSTHOOK: Input: default@tstsrcpart
+POSTHOOK: Output: default@tstsrcpart
 PREHOOK: query: SHOW LOCKS
 PREHOOK: type: SHOWLOCKS
 POSTHOOK: query: SHOW LOCKS
@@ -123,8 +143,12 @@ POSTHOOK: type: SHOWLOCKS
 default@tstsrcpart@ds=2008-04-08/hr=11	EXCLUSIVE
 PREHOOK: query: UNLOCK TABLE tstsrcpart PARTITION(ds='2008-04-08', hr='11')
 PREHOOK: type: UNLOCKTABLE
+PREHOOK: Input: default@tstsrcpart
+PREHOOK: Output: default@tstsrcpart
 POSTHOOK: query: UNLOCK TABLE tstsrcpart PARTITION(ds='2008-04-08', hr='11')
 POSTHOOK: type: UNLOCKTABLE
+POSTHOOK: Input: default@tstsrcpart
+POSTHOOK: Output: default@tstsrcpart
 PREHOOK: query: SHOW LOCKS
 PREHOOK: type: SHOWLOCKS
 POSTHOOK: query: SHOW LOCKS

@@ -2415,6 +2415,12 @@ public class DDLSemanticAnalyzer extends BaseSemanticAnalyzer {
       partSpec = partSpecs.get(0);
     }
 
+    inputs.add(new ReadEntity(getTable(tableName)));
+    // Lock table operation is to acquire the lock explicitly, the operation
+    // itself doesn't need to be locked. Set the WriteEntity as WriteType:
+    // DDL_NO_LOCK here, otherwise it will conflict with Hive's transaction.
+    outputs.add(new WriteEntity(getTable(tableName), WriteType.DDL_NO_LOCK));
+
     LockTableDesc lockTblDesc = new LockTableDesc(tableName, mode, partSpec,
         HiveConf.getVar(conf, ConfVars.HIVEQUERYID));
     lockTblDesc.setQueryStr(this.ctx.getCmd());
@@ -2467,6 +2473,13 @@ public class DDLSemanticAnalyzer extends BaseSemanticAnalyzer {
     if (partSpecs.size() > 0) {
       partSpec = partSpecs.get(0);
     }
+
+    inputs.add(new ReadEntity(getTable(tableName)));
+    // Unlock table operation is to release the lock explicitly, the
+    // operation itself don't need to be locked. Set the WriteEntity as
+    // WriteType: DDL_NO_LOCK here, otherwise it will conflict with
+    // Hive's transaction.
+    outputs.add(new WriteEntity(getTable(tableName), WriteType.DDL_NO_LOCK));
 
     UnlockTableDesc unlockTblDesc = new UnlockTableDesc(tableName, partSpec);
     rootTasks.add(TaskFactory.get(new DDLWork(getInputs(), getOutputs(),

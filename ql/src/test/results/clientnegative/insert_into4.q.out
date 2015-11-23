@@ -26,7 +26,11 @@ POSTHOOK: Lineage: insert_into3_neg PARTITION(ds=1).key EXPRESSION [(src)src.Fie
 POSTHOOK: Lineage: insert_into3_neg PARTITION(ds=1).value SIMPLE [(src)src.FieldSchema(name:value, type:string, comment:default), ]
 PREHOOK: query: LOCK TABLE insert_into3_neg PARTITION (ds='1') EXCLUSIVE
 PREHOOK: type: LOCKTABLE
+PREHOOK: Input: default@insert_into3_neg
+PREHOOK: Output: default@insert_into3_neg
 POSTHOOK: query: LOCK TABLE insert_into3_neg PARTITION (ds='1') EXCLUSIVE
 POSTHOOK: type: LOCKTABLE
+POSTHOOK: Input: default@insert_into3_neg
+POSTHOOK: Output: default@insert_into3_neg
 Unable to acquire IMPLICIT, EXCLUSIVE lock default@insert_into3_neg@ds=1 after 5 attempts.
 FAILED: Error in acquiring locks: Locks on the underlying objects cannot be acquired. retry after some time
