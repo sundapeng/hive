@@ -756,8 +756,8 @@ public class SessionState {
     if (conf.get(CONFIG_AUTHZ_SETTINGS_APPLIED_MARKER, "").equals(Boolean.TRUE.toString())) {
       return;
     }
-    conf.setVar(ConfVars.METASTORE_FILTER_HOOK,
-        "org.apache.hadoop.hive.ql.security.authorization.plugin.AuthorizationMetaStoreFilterHook");
+    //conf.setVar(ConfVars.METASTORE_FILTER_HOOK,
+    //    "org.apache.hadoop.hive.ql.security.authorization.plugin.AuthorizationMetaStoreFilterHook");
 
     authorizerV2.applyAuthorizationConfigPolicy(conf);
     // update config in Hive thread local as well and init the metastore client
